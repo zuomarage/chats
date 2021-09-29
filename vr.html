@@ -4,18 +4,7 @@
 
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="displacement-shader.js"></script>
-  <script>
-    // You can also set which camera to use (front/back/etc)
-    // @SEE https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-    navigator.mediaDevices.getUserMedia({audio: false, video: true})
-    .then(stream => {
-      let $video = document.querySelector('video')
-      $video.srcObject = stream
-      $video.onloadedmetadata = () => {
-        $video.play()
-      }
-    })
-  </script>
+  
   <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 
@@ -24,7 +13,7 @@
     
     <a-assets>
       <img id="Sky" src="STAR.jpeg">
-      <video id="mur" playsinline  autoplay="true" src="dede.mp4" ></video>
+      <video id="mur" autoplay="true" src="AH.mp4"></video>
       <audio id="MUSIK" src="12.mp3" autoplay="true" >
 
       <a-asset-item id="sol" src="L9/WATER.obj" position="0 0 0"></a-asset-item>
