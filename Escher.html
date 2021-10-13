@@ -1,0 +1,32 @@
+html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-mirror-component/dist/aframe-mirror-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script>
+  </head>
+  <body>
+    <a-scene physics="debug: true">
+
+      <a-entity id="camera" position="0 1.6 0">
+        <!-- Camera Entity -->
+        <a-entity id="camera" camera look-controls wasd-controls kinematic-body foo></a-entity>
+      </a-entity>
+  
+
+      <a-assets>
+        <a-asset-item  
+
+         id="escher" src="juju.glb" ></a-asset-item>
+      </a-assets>
+    <a-scene light="defaultLightsEnabled: true">
+    
+      <a-entity gltf-model="#escher" animation="property: rotation; to: 0 0 360;loop: true; dur: 50000" roughness="0"  mirror="resolution: 10; distance: 122000; interval: 2020; repeat: true" ></a-entity>
+      <a-entity light="color: #008BFF; intensity: 2; decay: 3; distance: 0.5" 
+                  position="0.5 2.5 0" animation="property: rotation; to: 0 0 360;loop: true; dur: 10000">
+        </a-entity>
+        <a-sky material="shader:gradient;topColor:0 0 255;bottomColor:0 251 255">
+  
+        </a-entity>
+    </a-scene>
+  </body>
+</html>

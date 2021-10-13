@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>A-Frame</title>
+	<meta name="oui" content="coucou">
+	<script src="js/aframe-master.1.0.4.min.js"></script>
+	<script src="js/aframe-environment-component.min.js"></script>
+	<script src="js/aframe-physics-system.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- https://github.com/supermedium/aframe-environment-component
+<a-scene environment="preset: default;"> -->
+	  
+<a-scene environment="preset: starry;" physics="debug: true;">
+
+
+
+	<!-- camera -->
+	<a-entity camera look-controls wasd-controls="acceleration:10" position="0 1.6 0"></a-entity>
+
+  <!-- Floor -->
+ 
+  <a-plane static-body position="0 0.02 0" rotation="90 0 0" width="220" height="1000" material="blue"></a-plane>
+
+
+  
+  <a-cylinder dynamic-body position="-3 3 -5" rotation="5 10 15" radius="0.25" height="1" color="blue"></a-cylinder>
+
+  <a-entity dynamic-body="shape: hull;" geometry="primitive: icosahedron; radius: 0.5;" position="-1 3 -5" material="blue"></a-entity>
+
+  <a-sphere dynamic-body position="1 6 -5" radius="0.5" material="src:#ball; color:blue;"></a-sphere>
+
+  <a-sphere dynamic-body position="2.5 6 -5.1" radius="0.5" material="src:#ball; color:blue;"></a-sphere>
+
+  <a-sphere dynamic-body position="3 4 -5" radius="0.5" material="src:#ball; color:blue;"></a-sphere>
+
+  <a-sphere dynamic-body position="3.5 8 -4.8" radius="0.5" material="src:#ball; color:blue;"></a-sphere>
+
+
+  <a-sphere dynamic-body position="5 2 -5" radius="0.5" material="src:#ball; color:blue;"></a-sphere>
+
+</a-scene>
+
+
+</body>
+</html>
