@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shader Test</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script>
+      /* global THREE AFRAME*/
+      AFRAME.registerComponent("water-helper", {
+        async init() {
+          const {generateCausticCanvasTexture} = await import("./waterTexture.js");
+          this.el.setAttribute('material', 'map', generateCausticCanvasTexture(15));
+        }
+      });
+
+      AFRAME.registerShader("water", {
+        schema: {
+          map: { type: "map", is: "uniform" },
+          basecolor: { type: "color", is: "uniform", default: "blue" },
+          foamcolor: { type: "color", is: "uniform", default: "pink" }
+        },
+        fragmentShader: `
+          varying vec2 vUv;
+          uniform sampler2D map;
+          uniform vec3 basecolor;
+          uniform vec3 foamcolor;
+
+          void main() {
+            gl_FragColor.a = 1.0;
+            vec3 color = texture2D( map, vUv*100.0 ).rgb;
+            gl_FragColor.rgb = mix(basecolor, foamcolor, color.r);
+          }`,
+        vertexShader: `
+          varying vec2 vUv;
+
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `
+      });
+    </script>
+  </head>  
+  <body>
+    <a-scene background="color: #FAFAFA" style="position:absolute;">
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+      <a-box position="0 -2 -4" rotation="-90 0 0" width="4" height="4" depth="4" color="#7BC8A4" shadow></a-box>
+
+      <!-- my floor shader -->
+      <a-plane material="shader:water" water-helper width="100" height="100" repeat="100" position="0 1 0" rotation="-90 0 0"></a-plane>
+    </a-scene>
+    <img src="https://stats.ada.is/counter.png?fallback=a-shader-starter&color=black" alt="" style="vertical-align: bottom;" aria-hidden="true">
+  </body>
+</html>
