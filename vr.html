@@ -79,17 +79,18 @@
     <a-text value="Bienvenue,
   trouve l'asteroide..." position="4 110 130" width="100" color="red"></a-text>
 
+   <!-- PLAYER -->
+        <a-entity id="cameraRig">
+            <!-- TETE -->
+            <a-entity id="head" camera look-controls wasd-controls 
+                      position-reader=" position="0 110 160">
+                <a-text id="txthead" value="position" position="0 0 -1" rotation="0 0 0" scale="0.5 0.5 0.5"
+                    align="center" color="#FF0000">
+                </a-text>
+            </a-entity>
 
-     
-      <a-entity id="cameraRig">
-        <!-- TETE -->
-        <a-entity id="head" camera look-controls wasd-controls="acceleration: 1500"
-                  position-reader position="0 110 160">
-            <a-text id="txthead" value="position" position="0 0 -1" rotation="0 0 0" scale="0.5 0.5 0.5"
-                align="center" color="yellow">
-            </a-text>
-        </a-entity>
-      <a-entity id="leftHand" input-listen
+            <!-- LEFT HAND -->
+            <a-entity id="leftHand" input-listen
                 hand-controls="hand: left; handModelStyle: toon; color: #ccccff"
                 teleport-controls="cameraRig: #cameraRig; 
                                    teleportOrigin: #head; 
@@ -104,6 +105,9 @@
             <a-entity id="rightHand" 
                 hand-controls="hand: right; handModelStyle: toon; color: #ccccff">
             </a-entity>
+        </a-entity>
+     
+    
     
     <a-box src="#mur" position="0 150 108" rotation="0 65 0" depth="20" width="100" height="100"  material="shader:displacement" ></a-box>
     <a-box src="#mur" position="60 150 108" rotation="0 75 0" depth="20" width="100" height="100" material="shader:displacement" ></a-box>
