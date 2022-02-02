@@ -5,6 +5,54 @@
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="caca.js"></script>
   
+  <script>
+    // PLAYER _ POSITION : <a-entity camera look-controls position-reader>
+    AFRAME.registerComponent('position-reader', {
+        tick: function () {
+            var wposition = new THREE.Vector3();
+            var wpos = this.el.object3D.getWorldPosition(wposition);
+            //console.log(wpos.x+"_"+wpos.y+"_"+wpos.z);
+
+            var pos = this.el.object3D.position;
+            var xz = (wpos.x+pos.x).toFixed(2)+"_"+(wpos.z+pos.z).toFixed(2);
+            console.log(xz);
+            
+            var rot = this.el.object3D.rotation;
+            var rY = "ry ="+(rot.y*(180/Math.PI)).toFixed(2);
+            //console.log(rY);
+
+            var sceneEl = document.querySelector('a-scene');
+            var info = sceneEl.querySelector('#txthead');
+            //console.log(pos);
+            //info.setAttribute('value', xz+"\n"+rY);
+            info.setAttribute('value', xz+"\n"+rY);
+            }
+    });
+
+    AFRAME.registerComponent('input-listen', {
+        init: function () {
+            //grip button is pressed or not _ "this.el" reffers ctlR or L in this function
+            this.el.grip = false;
+
+            //X-buttorn Pressed 
+            this.el.addEventListener('xbuttondown', function (e) {
+                //Start pointing position to teleport  
+                this.emit('teleportstart');
+            });
+
+            //X-buttorn Released 
+            this.el.addEventListener('xbuttonup', function (e) {
+                //Jump to pointed position
+                this.emit('teleportend');
+            });
+
+            //console.log(this);
+        },
+
+    });
+
+</script>
+  
   <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 
@@ -13,7 +61,7 @@
     
     <a-assets>
       <img id="Sky" src="STAR.jpeg">
-      <video id="mur" src="AH.mp4" autoplay loop="true" ></video>
+      <img id="mur" src="STAR.jpeg" >
       <audio id="MUSIK" src="12.mp3" autoplay="true" >
 
       <a-asset-item id="sol" src="L9/WATER.obj" position="0 0 0"></a-asset-item>
@@ -31,21 +79,40 @@
     <a-text value="Bienvenue,
   trouve l'asteroide..." position="4 110 130" width="100" color="red"></a-text>
 
-    <a-entity camera look-controls wasd-controls="acceleration: 300" position="0 110 160">
-      <a-camera></a-camera>
-    </a-entity>
+
+    <a-entity id="cameraRig">
+      <!-- TETE -->
+      <a-entity id="head" position-reader camera wasd-controls look-controls="acceleration: 400" position="0 110 160">
+          <a-text id="txthead" value="position" position="0 0 -0.5" width="5"  align="center" color="yellow">
+          </a-text>
+      </a-entity>
+      <a-entity id="leftHand" input-listen
+                hand-controls="hand: left; handModelStyle: toon; color: #ccccff"
+                teleport-controls="cameraRig: #cameraRig; 
+                                   teleportOrigin: #head; 
+                                   startEvents: teleportstart; 
+                                   endEvents: teleportend" >
+                <a-text value="X: Teleport" 
+                        position="0 0.08 0" rotation="-90 0 0" scale="0.1 0.1 0.1" 
+                        align="center" color="#FFFFFF">
+                </a-text>
+            </a-entity>
+            <!-- RIGH HAND -->
+            <a-entity id="rightHand" 
+                hand-controls="hand: right; handModelStyle: toon; color: #ccccff">
+            </a-entity>
     
-    <a-box src="#mur" position="0 150 108" rotation="0 65 0" depth="20" width="100" height="100" ></a-box>
-    <a-box src="#mur" position="60 150 108" rotation="0 75 0" depth="20" width="100" height="100" ></a-box>
-    <a-box src="#mur" position="40 150 10" rotation="0 0 0" depth="20" width="100" height="100" ></a-box>
-    <a-box src="#mur" position="-22 150 60" rotation="0 0 0" depth="20" width="100" height="100" ></a-box>
-    <a-box src="#mur" position="113 150 60" rotation="0 0 0" depth="20" width="100" height="100" ></a-box>
-    <a-box src="#mur" position="109 150 5" rotation="0 75 0" depth="20" width="100" height="100" ></a-box>
-    <a-box  src="#mur" position="-50 150 10" rotation="0 65 0" depth="20" width="100" height="100" ></a-box>
-    <a-box  src="#mur" position="-16 150 -50" rotation="0 0 0" depth="20" width="100" height="100" ></a-box>
-    <a-box src="#mur" position="30 150  -90" rotation="0 75 0" depth="20" width="100" height="100" ></a-box>
-    <a-box src="#mur" position="125 150  -90" rotation="0 75 0" depth="20" width="100" height="100" ></a-box>
-    <a-box src="#mur"  position="80 150  -90" rotation="0 75 0" depth="10" width="100" height="100" ></a-box>
+    <a-box src="#mur" position="0 150 108" rotation="0 65 0" depth="20" width="100" height="100"  material="shader:displacement" ></a-box>
+    <a-box src="#mur" position="60 150 108" rotation="0 75 0" depth="20" width="100" height="100" material="shader:displacement" ></a-box>
+    <a-box src="#mur" position="40 150 10" rotation="0 0 0" depth="20" width="100" height="100"  material="shader:displacement"></a-box>
+    <a-box src="#mur" position="-22 150 60" rotation="0 0 0" depth="20" width="100" height="100"  material="shader:displacement"></a-box>
+    <a-box src="#mur" position="113 150 60" rotation="0 0 0" depth="20" width="100" height="100" material="shader:displacement" ></a-box>
+    <a-box src="#mur" position="109 150 5" rotation="0 75 0" depth="20" width="100" height="100" material="shader:displacement" ></a-box>
+    <a-box  src="#mur" position="-50 150 10" rotation="0 65 0" depth="20" width="100" height="100"  material="shader:displacement"></a-box>
+    <a-box  src="#mur" position="-16 150 -50" rotation="0 0 0" depth="20" width="100" height="100"  material="shader:displacement"></a-box>
+    <a-box src="#mur" position="30 150  -90" rotation="0 75 0" depth="20" width="100" height="100"  material="shader:displacement"></a-box>
+    <a-box src="#mur" position="125 150  -90" rotation="0 75 0" depth="20" width="100" height="100" material="shader:displacement" ></a-box>
+    <a-box src="#mur"  position="80 150  -90" rotation="0 75 0" depth="10" width="100" height="100"  material="shader:displacement"></a-box>
     <a-torus position="80 150  -90" rotation= "0 0 0" radius="300"  ></a-torus>
     <a-torus position="80 150  -70" rotation= "0 0 0" radius="300"  ></a-torus>
     <a-torus position="80 150  -60" rotation= "0 0 0" radius="300"  ></a-torus>
