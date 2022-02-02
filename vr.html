@@ -80,12 +80,15 @@
   trouve l'asteroide..." position="4 110 130" width="100" color="red"></a-text>
 
 
-    <a-entity id="cameraRig">
-      <!-- TETE -->
-      <a-entity id="head" position-reader camera wasd-controls look-controls="acceleration: 1000" position="0 110 160">
-          <a-text id="txthead" value="position" position="0 0 -0.5" width="5"  align="center" color="yellow">
-          </a-text>
-      </a-entity>
+     
+      <a-entity id="cameraRig">
+        <!-- TETE -->
+        <a-entity id="head" camera look-controls wasd-controls="acceleration: 400"
+                  position-reader position="0 110 160">
+            <a-text id="txthead" value="position" position="0 0 -1" rotation="0 0 0" scale="0.5 0.5 0.5"
+                align="center" color="yellow">
+            </a-text>
+        </a-entity>
       <a-entity id="leftHand" input-listen
                 hand-controls="hand: left; handModelStyle: toon; color: #ccccff"
                 teleport-controls="cameraRig: #cameraRig; 
