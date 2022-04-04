@@ -3,12 +3,8 @@
 ## DSAA1 Num
 *[vr](https://zuomarage.github.io/zuomarage_paysages/vr.html)  
 
-**[Test](https://zuomarage.github.io/zuomarage_paysages/caca.html) 
-
-***[lights](https://zuomarage.github.io/zuomarage_paysages/tutu.html)  
+**[Test](https://zuomarage.github.io/zuomarage_paysages/caca.html)   
 
 ****[escher](https://zuomarage.github.io/zuomarage_paysages/eschejulie.html)  
-
-*****[escher2](https://zuomarage.github.io/zuomarage_paysages/escher2.html) 
 
 ******[Cube](https://zuomarage.github.io/zuomarage_paysages/cube.html) 
