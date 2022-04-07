@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  
+    <head>
+      
+        </div>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+        <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+       <script type="text/javascript" src="js/joystick.js"></script>
+        <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        <script src="https://ensaama-officiel-numerique.github.io/components/detect/detect.js"></script>
+        <script src="https://ensaama-officiel-numerique.github.io/components/debug/debug.js"></script>
+        
+
+      
+    <script>
+        AFRAME.registerComponent('test', {
+            init: function () {
+                //console.log(this.el)
+                console.log(this.el.getAttribute('mixin'));
+            }
+        });
+        </script>
+        <script>
+            AFRAME.registerComponent('rotate-env', {
+        schema: {
+            trace: {
+                type: 'boolean',
+                default: false
+            },
+            trigger: {
+                type: 'number',
+                default: 1
+            },
+            max: {
+                type: 'number',
+                default: 45
+            },
+        },
+        tick: function () {
+            let rotate = {
+                x: 0,
+                z: 0
+            };
+            rotate.x = player.pos.z * this.data.max / this.data.trigger;
+            rotate.z = player.pos.x * this.data.max / this.data.trigger;
+            this.el.setAttribute('rotation', rotate.x + " 0 " + rotate.z);
+            console.log(rotate.x + "\n" + rotate.z);
+    
+            if (this.data.trace) {
+                var log = document.querySelector('#txtlog');
+                log.setAttribute('value', 'rx = ' + rotate.x.toFixed(2) + ", rz = " + rotate.z.toFixed(2));
+            }
+        }
+    });
+        </script>
+        
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body onload="init();">
+   
+        <a-scene  joystick shadow="type: pcfsoft; autoUpdate: true;" renderer="antialias: false; colorManagement: true; physicallyCorrectLights: true;"    debug-keyboard="key: e, r; event: enter-0, exit-1; target: #renard, #renard" 
+        debug-keyboard="key: e, r; event: enter-0, exit-1; target: #renard, #renard">
+        >
+>
+
+            <a-assets>
+				<a-asset-item id="node-0" src="./assets/g.glb"   ></a-asset-item>
+                <a-assets>
+                    <a-asset-item id="fox" src="assets/ok.gltf"></a-asset-item>
+                    <a-mixin id="survey" animation-mixer="clip: idle"></a-mixin>
+                    <a-mixin id="run" animation-mixer="clip: Run"></a-mixin>
+                    <a-mixin id="walk" animation-mixer="clip: Walk"></a-mixin>
+                </a-assets>
+              
+                <img id="sky"                 src="HDR_029_Sky_Cloudy_Bg.jpg">
+            </a-assets>
+
+            
+			<a-entity   id="#node-0" gltf-model="#node-0" scale="1 1 1" position="-0 0 0" rotation="0 0" visible="true" shadow="cast: true" rotate-env="trigger: 1; max: .5;  "
+          ></a-entity>
+          <a-entity id="renard" position="-164.482 104.224 -116.596" scale="70 70 70 " rotation="-13.761 143.783 9.882" 
+          gltf-model="#fox" rotate-env="trigger: 1; max: .5;  "mixin="survey" test
+          proximity=" seuils: 60, 200" 
+          event-set__enter-0="event: _event: enter-0; mixin: run;"
+          event-set__exit-1="event: _event: exit-1; mixin: walk;"            
+          event-set__enter-1="event: _event: enter-1; mixin: walk;" 
+          event-set__exit-2="event: _event: enter-2; mixin: idle;"
+          >
+  </a-entity>
+  
+        
+            <a-entity id="player" 
+            currentposition
+                position="51.207 -18.862 -115.596" 
+                movement-controls="speed: 2"
+              >
+                <a-entity  id="camera" 
+                currentposition
+                    camera="near: 1" 
+                    position=51.207 0 0" 
+                    look-controls="pointerLockEnabled: true"
+                   >
+                       
+               
+
+            <a-sky src="#sky" material="" geometry="" radius="2000" rotation="0 90 0"></a-sky>
+        </a-scene>
+    </body>
+</html>
