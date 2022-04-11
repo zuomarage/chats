@@ -1,0 +1,87 @@
+<!-- https://github.com/jgbarah/aframe-playground/tree/master/moving-01 -->
+<!-- Fox : https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/Fox -->
+<!-- animations : dans le gltf "name":  Walk / Survey / Run-->
+<!-- https://github.com/n5ro/aframe-extras/tree/master/src/loaders#animation
+     Event 	               Details 	            Description
+     - animation-loop 	   action, loopDelta 	Emitted when a single loop has finished.
+     - animation-finished  action, direction 	Emitted when all loops  have finished
+ -->
+ <!-- https://aframe.io/docs/1.0.0/core/component.html -->
+ <!DOCTYPE html>
+ <html>
+   <head>
+     <meta charset="UTF-8">
+     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script> 
+     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+ 
+     <script>
+       var actions = ["Run", "Walk", "idle", "jump","Paw"];
+       var dataRun = "clip: Run; crossFadeDuration: .1; repetitions : 2; timeScale: 1";
+       var dataWalk = "clip: Walk; crossFadeDuration: .1; repetitions : 2; timeScale: 1";
+       var dataSurvey = "clip: idle; crossFadeDuration: .1; repetitions : 2; timeScale: 1";
+       var dataJump = "clip: jump; crossFadeDuration: .1; repetitions : 2; timeScale: 1";
+       var dataPaw = "clip: Paw; crossFadeDuration: .1; repetitions : 2; timeScale: 1";
+       var current = actions[4];
+ 
+       AFRAME.registerComponent('loaded', {
+         init: function () {
+             var el = this.el;
+             el.addEventListener('model-loaded', () => {
+                 console.log(">>> animation chargée : "+el.id);
+ 
+                 });
+             el.addEventListener('model-error', () => {
+                 console.log(">>> erreur chargement : "+el.id);
+             });
+         }
+       });
+ 
+       AFRAME.registerComponent('finished', {
+           update: function () {
+               var el = this.el;
+               el.addEventListener('animation-finished', () => {
+                   console.log(">>> animation terminée : "+el.id);
+                   el.removeAttribute("animation-mixer");
+ 
+                   var newIndex = Math.floor(Math.random() * actions.length);
+                   console.log(">>> "+newIndex+"_"+ actions[newIndex]);
+                   switch (newIndex) {
+                       case 0: maj = dataRun; break;
+                       case 1: maj = dataWalk; break;
+                       case 2: maj = dataSurvey; break;
+                       case 3: maj = dataJump; break;
+                       case 4: maj = dataPaw; break;
+                       // default:
+                   }
+ 
+                   el.setAttribute("animation-mixer", maj );
+               });
+           }
+       });
+     </script>
+   </head>
+ 
+   <body>
+       <a-scene>
+         <a-assets>
+           <a-asset-item id="fox" src="models/x.gltf"></a-asset-item>
+         </a-assets>
+ 
+         <a-entity id="renard"
+                   position="-4 -2 -9"
+                   rotation="0 60 0"
+                   scale="10 10 10"
+                   gltf-model="#fox"
+                   animation-mixer="clip: idle; repetitions : 2; duration: 2; "
+                   loaded
+                   finished>
+         </a-entity>
+ 
+         <a-sky color="#0097FF"></a-sky>
+         <a-light type="ambient" color="white"></a-light>
+         <a-light type="point" intensity="1" position="-2 2 2"></a-light>
+       </a-scene>
+ 
+   </body>
+ </html>
+ 
