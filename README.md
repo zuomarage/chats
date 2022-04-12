@@ -12,10 +12,10 @@ J'ai supprimé les anciens fichiers  pour libérer de l'espace
 * .[Cats_proximity_hands](https://zuomarage.github.io/zuomarage_paysages/cats_proximitty.html)
 * .[City_of_cats](https://zuomarage.github.io/zuomarage_paysages/cats_proximitty.html)
 
-<a href="https://github.com/Zhenye-Na/DA-RNN">
+<a href="https://zuomarage.github.io/zuomarage_paysages/cats_proximitty.html">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=zhenye-na&repo=DA-RNN&show_icons=true&line_height=27&title_color=6aa6f8&text_color=8a919a&icon_color=6aa6f8&bg_color=22272e" alt="DA-RNN" />
 </a>
 
-<a href="https://github.com/Zhenye-Na/crnn-pytorch">
+<a href="https://zuomarage.github.io/zuomarage_paysages/cats_proximitty.html">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=zhenye-na&repo=crnn-pytorch&show_icons=true&line_height=27&title_color=6aa6f8&text_color=8a919a&icon_color=6aa6f8&bg_color=22272e" alt="crnn-pytorch" />
 </a>
