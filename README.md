@@ -13,7 +13,7 @@ J'ai supprimé les anciens fichiers  pour libérer de l'espace
 * .[City_of_cats](https://zuomarage.github.io/zuomarage_paysages/cats_proximitty.html)
 
  <tr>
-      <td><a href="https://zuomarage.github.io/zuomarage_paysages/cats_proximity.html"><img src=https://zuomarage.github.io/zuomarage_paysages/cats_proximity.html" width="540" height="64"></a></td>
+      <td><a href="https://zuomarage.github.io/zuomarage_paysages/cats_proximity.html">* .[Cats_proximity_realistic]></a></td>
     </tr>
     <tr></tr> <!-- hide gray row -->
     <tr>
