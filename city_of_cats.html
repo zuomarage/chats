@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script type="text/javascript" src="js/joystick.js"></script>
+
+    <script src="https://ensaama-officiel-numerique.github.io/components/detect/detect.js"></script>
+    <script src="https://ensaama-officiel-numerique.github.io/components/debug/debug.js"></script>
+    <script>
+
+        // runs when user clicks button
+        AFRAME.registerComponent('start', {
+        
+            init: function()
+            {
+                // block pointer events until buttonEnter is clicked
+                let uiDiv = document.getElementById("uiDiv");
+                uiDiv.style["pointer-events"] = "auto";
+        
+                // set up background blocker
+                uiDiv.style["background-color"] = "rgba(0, 0, 0, 0.75)";
+        
+                // indicate clickable with hand cursor (desktop)
+                let buttonEnter = document.getElementById("buttonEnter");
+                buttonEnter.style.cursor = "pointer";
+        
+                // fade-in functionality
+                let fadeIn = function()
+                {
+                    // allow point events again
+                    uiDiv.style["pointer-events"] = "none";
+        
+                 
+        
+                    // remove startButton
+                    buttonEnter.parentNode.remove(buttonEnter);
+        
+                    // fade out uiDiv background
+                    uiDiv.style["background-color"] = "rgba(0, 0, 0, 0.0)";
+                    uiDiv.style["transition"] = "background-color 1000ms linear";
+                }
+        
+                // activate for desktop/touchscreen
+                buttonEnter.addEventListener('touchstart', fadeIn);
+                buttonEnter.addEventListener('mousedown',  fadeIn);
+            }
+        });
+        </script>
+        
+        
+    <style>
+        .mainUI
+        {
+            border: 0px solid pink; 
+            position: fixed; 
+            top: 0px;  
+            width:100%; height:100%; 
+            z-index: 1; 
+            pointer-events: none; /* allow click-through in transparent areas */
+            display: flex;
+            align-items: center;
+              justify-content: center;
+        }
+        
+        .regionUI
+        {
+            border: 0px solid yellow;
+            position: absolute; 
+            display: flex;
+            flex-direction: row;
+            pointer-events: none;
+        }
+        
+        .buttonUI
+        {
+            border: 0px solid lime;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            pointer-events: auto;	
+            filter: drop-shadow(0px 0px 20px white);
+        }
+        </style>
+
+    <script>
+        AFRAME.registerComponent('test', {
+            init: function () {
+                //console.log(this.el)
+                console.log(this.el.getAttribute('mixin'));
+            }
+        });
+    </script>
+    <script>
+        AFRAME.registerComponent('rotate-env', {
+            schema: {
+                trace: {
+                    type: 'boolean',
+                    default: false
+                },
+                trigger: {
+                    type: 'number',
+                    default: 1
+                },
+                max: {
+                    type: 'number',
+                    default: 45
+                },
+            },
+            tick: function () {
+                let rotate = {
+                    x: 0,
+                    z: 0
+                };
+                rotate.x = player.pos.z * this.data.max / this.data.trigger;
+                rotate.z = player.pos.x * this.data.max / this.data.trigger;
+                this.el.setAttribute('rotation', rotate.x + " 0 " + rotate.z);
+                console.log(rotate.x + "\n" + rotate.z);
+
+                if (this.data.trace) {
+                    var log = document.querySelector('#txtlog');
+                    log.setAttribute('value', 'rx = ' + rotate.x.toFixed(2) + ", rz = " + rotate.z.toFixed(2));
+                }
+            }
+        });
+    </script>
+
+
+</head>
+
+<body onload="init();">
+    <div class="mainUI" id="uiDiv" oncontextmenu="return false;">
+       
+        <div class="regionUI">
+            <div class="buttonUI">
+            <img src="enter2.png" id="buttonEnter" />
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <h2>Popup</h2>
+    <a-scene  start fog="color: #81A7FF" animation__fog="property: fog.color; to: #C1CFFF; dur: 9000; loop: true" joystick shadow="type: pcfsoft; autoUpdate: true;"
+        renderer="antialias: false; colorManagement: true; physicallyCorrectLights: true;"
+        debug-keyboard="key: e, r; event: enter-0, exit-1; target: #renard, #renard "
+        debug-keyboard="key: e, r; event: enter-0, exit-1; target: #renard, #renard">
+        >
+        >
+
+        <a-assets>
+            <a-asset-item id="node-0" src="models\assets\node-0.gltf"></a-asset-item>
+            <a-assets>
+                <a-asset-item id="fox" src="models\e.gltf"></a-asset-item>
+                <a-mixin id="survey" animation-mixer="clip: idle"></a-mixin>
+                <a-mixin id="run" animation-mixer="clip: Paw"></a-mixin>
+                <a-mixin id="walk" animation-mixer="clip: idle"></a-mixin>
+                <a-mixin id="coucou" animation-mixer="clip: Walk"></a-mixin>
+                <a-mixin id="cours" animation-mixer="clip: Run"></a-mixin>
+            </a-assets>
+
+            
+
+            <a-assets>
+                <a-asset-item id="fox" src="models\e.gltf"></a-asset-item>
+                <a-mixin id="run" animation-mixer="clip: run"></a-mixin>
+
+            </a-assets>
+
+           
+        </a-assets>
+
+        <a-entity rotate-env="trigger: 1; max: .5;">
+            <a-entity id="#node-0" gltf-model="#node-0" scale="1 1 1" position="-0 0 0" rotation="0 0" visible="true"
+                shadow="cast: true "></a-entity>
+
+
+            <a-entity id="renard" position="-216.955 17.512 14.211" scale="100 100 100 " rotation="-1.441 2.561 12.789"
+                gltf-model="#fox" mixin="survey" test proximity=" seuils: 60, 200"
+                event-set__enter-0="event: _event: enter-0; mixin: run;"
+                event-set__exit-1="event: _event: exit-1; mixin: walk;"
+                event-set__enter-1="event: _event: enter-1; mixin: walk;"
+                event-set__exit-2="event: _event: enter-2; mixin: idle;">
+            </a-entity>
+
+            <a-entity id="renard2" position="-29.316 -178.570 235.116" scale="140 140 140 "
+                rotation="-13.528 112.006 -7.700" gltf-model="#fox" mixin="coucou" animation="property: position; to: 320.316 -178.570 235.116; dur: 6000; loop : true;">
+            </a-entity>
+
+            <a-entity id="renard3" position="126.823 -287.767 217.836" scale="140 140 140 "
+            rotation="26.844 -88.009 7.366" gltf-model="#fox" mixin="coucou" animation="property: position; to: 77.079 -382.558 269.401; dur: 6000; loop : true;" >
+        </a-entity>
+
+        <a-entity id="renard4" position="168.147 -277.670 -211.287" scale="140 140 140 "
+        rotation="-82.378 -78.169 -99.813" gltf-model="#fox" mixin="coucou" animation="property: position; to: 210.406 233.286 -200.352; dur: 8000; loop : true;" >
+    </a-entity>
+
+    <a-entity id="renard5" position="24.114 -41.817 211.383" scale="140 140 140 "
+                rotation="-1.205 111.812 -0.390" gltf-model="#fox" mixin="walk">
+            </a-entity>
+
+            <a-entity id="renard6" position="-146.829 150.918 257.613" scale="140 140 140 "
+            rotation="5.718 -178.800 102.973" gltf-model="#fox" mixin="run" >
+        </a-entity>
+
+        <a-entity id="renard7" position="-201.969 -508.695 -213.633" scale="140 140 140 "
+        rotation="-71.836 -92.640 -90.235" gltf-model="#fox" mixin="cours" animation="property: position; to: -336.100 296.371 -221.077; dur: 5000; loop : true;" >
+    </a-entity>
+
+    <a-entity id="renard6" position="-113.818 -316.744 -257.530" scale="140 140 140 "
+    rotation="-30.406 100.353 8.776" gltf-model="#fox" mixin="survey" >
+</a-entity>
+
+<a-entity id="renard6" position="-146.829 150.918 257.613" scale="140 140 140 "
+rotation="5.718 -178.800 102.973" gltf-model="#fox" mixin="run" >
+</a-entity>
+
+<a-entity id="renard6" position="18.65625 236.89542 141.87323" scale="140 140 140" rotation="65.34794 -172.02200000000002 17.10426"
+gltf-model="models\e.gltf" mixin="cours" animation="property: position; to: -137.529 -12.596 -328.422; dur: 5000; loop : true;">
+</a-entity>
+
+<a-entity id="renard6" position="-155.96715 -180.40268 556.71092" scale="140 140 140" rotation="5.718 -178.8 102.973" gltf-model="models\e.gltf" mixin="run">
+</a-entity>
+
+
+
+
+
+        </a-entity>
+       
+        <a-entity id="player" currentposition position="51.207 -18.862 -115.596" movement-controls="speed: 2">
+            <a-entity id="camera" currentposition camera="near: 1" position="51.207 0 0" look-controls="pointerLockEnabled: true">
+
+
+                <a-sky color="#81A7FF" geometry="" radius="2000" rotation="0 90 0"></a-sky>
+                
+    </a-scene>
+</body>
+
+</html>
