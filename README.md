@@ -1,6 +1,6 @@
 # Année 2021-2022
 
-J'ai supprimé les anciens fichiers  pour libérer de l'espace
+L'ancien Repository à été vidé pour avoir plus de stockage
 
 ## DSAA1 Num 🖥️
 
