@@ -1,0 +1,102 @@
+
+<!-- https://www.w3docs.com/snippets/javascript/how-to-create-and-trigger-event-in-javascript.html -->
+<!-- https://devstephen.medium.com/keyboardevent-key-for-cross-browser-key-press-check-61dbad0a067a -->
+<!doctype html>
+<html lang="fr">
+    <title>Si tu approches la tête, le chat donne sa patte. Si tu t'éloignes, il part.</title>
+<head>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <!-- <script src="https://ensaama-officiel-numerique.github.io/components/detect/detect.js"></script> -->
+    <script src="https://ensaama-officiel-numerique.github.io/components/detect/detect.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+     <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://ensaama-officiel-numerique.github.io/components/debug/debug.js"></script>
+
+    <script>
+    AFRAME.registerComponent('test', {
+        init: function () {
+            //console.log(this.el)
+            console.log(this.el.getAttribute('mixin'));
+        }
+    });
+    </script>
+    <script>
+ 
+    // composant pour visualier les changements de hauteur
+    AFRAME.registerComponent('modify-color', {
+        init: function () {
+            let el = this.el;
+            console.log(el.id);
+            // Wait for event
+            this.el.addEventListener('heightup-3', () => { el.setAttribute('animation-mixer', {clip: 'Walk', loop: 'once'});  });
+            this.el.addEventListener('heightup-2', () => { el.setAttribute('animation-mixer',{clip: 'Paw', loop: 'once'});  });
+            this.el.addEventListener('heightup-1', () => { el.setAttribute('animation-mixer',{clip: 'idle', loop: 'once'});     });                                 
+            this.el.addEventListener('heightdown-2', () => { el.setAttribute('animation-mixer',{clip: 'Walk', loop: 'once'});  });
+            this.el.addEventListener('heightdown-1', () => { el.setAttribute('animation-mixer',{clip: 'idle', loop: 'once'});   });
+            this.el.addEventListener('heightdown-0', () => { el.setAttribute('animation-mixer',{clip: 'Paw', loop: 'once'});    });                                   
+        }
+
+    });    
+
+    // composant pour tester avec les clavier (sans casque)
+    AFRAME.registerComponent('change-height', {
+        init: function () {
+            let el = this.el;
+            let key = ['h','b'];
+            document.addEventListener('keypress', evt => {
+                for (var i = 0; i < key.length; i++) {
+                    if (evt.key === key[0]) {
+                        console.log("key '"+key[0]+"' was pressed");
+                        let position = el.getAttribute('position');
+                        el.setAttribute("position", position.x+" "+(position.y + 0.1)+" "+position.z);
+                    }
+                    if (evt.keyCode === key[1].codePointAt(0)) {
+                        console.log("key '" + key[1] + "' was pressed");
+                        let position = el.getAttribute('position');
+                        el.setAttribute("position", position.x + " " + (position.y - 0.1) + " " + position.z);
+                    }                    
+                }
+            });
+        }
+    });    
+
+    </script>    
+</head>
+
+<body>
+
+    <a-scene background="color: skyblue" frequency="delay: 500"
+        debug-keyboard="key: r; event: heightup-3; target: #fox">
+
+        <a-assets>
+            <a-asset-item id="fox" src="models/e.gltf"></a-asset-item>
+            <a-mixin id="idle" animation-mixer="clip: idle"></a-mixin>
+            <a-mixin id="walk" animation-mixer="clip: Walk"></a-mixin>
+            <a-mixin id="Paw" animation-mixer="clip: Paw"></a-mixin>
+        </a-assets>
+        <a-entity id="renard" position="-1 0 -2" 
+            scale="1 1 1" gltf-model="#fox" 
+            modify-color  mixin="idle" test
+            head-height="trace: true; seuils: 0.5, 1, 1.5"
+            
+>
+        </a-entity>
+
+       
+
+        <a-plane position="0 0 -2" rotation="-90 0 0" width="4" height="4" color="gray">
+        </a-plane>
+
+        <a-entity camera position="0 1.6 0" currentposition change-height
+            look-controls wasd-controls="acceleration:10">
+            <a-text id="txtlog" value="position" align="center" color="#FF0000" position="0 0 -1" rotation="0 0 0"
+                scale="0.25 0.25 0.25">
+            </a-text>
+        </a-entity>
+
+    </a-scene>
+
+</body>
+
+</html>
