@@ -8,6 +8,6 @@ J'ai supprimé les anciens fichiers  pour libérer de l'espace
 * .[ 🐈 Cat_actions](https://zuomarage.github.io/zuomarage_paysages/cat_actions.html) 
 * .[ 🐈 Cats_proximity_realistic](https://zuomarage.github.io/zuomarage_paysages/cats_proximitty.html)
 * .[ 🐈 Cats_proximity_neutral](https://zuomarage.github.io/zuomarage_paysages/cats_proximity.html) 
-* .[ 🐈 Cats_proximity_head](https://zuomarage.github.io/zuomarage_paysages/cats_proximitty.html)
+* .[ 🐈 Cats_proximity_head](https://zuomarage.github.io/zuomarage_paysages/cats_proximity_head.html)
 * .[ 👐 Cats_proximity_hands](https://zuomarage.github.io/zuomarage_paysages/cats_proximity_head.html)
 * .[ 🏢 City_of_cats](https://zuomarage.github.io/zuomarage_paysages/cats_proximitty.html)
