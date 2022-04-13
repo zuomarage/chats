@@ -1,0 +1,63 @@
+
+<!doctype html>
+<html lang="fr">
+   
+<head>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://ensaama-officiel-numerique.github.io/components/detect/detect.js"></script>
+    <script src="https://ensaama-officiel-numerique.github.io/components/debug/debug.js"></script>
+   
+    <script>
+    AFRAME.registerComponent('test', {
+        init: function () {
+            //console.log(this.el)
+            console.log(this.el.getAttribute('mixin'));
+        }
+    });
+    </script>
+</head>
+
+<body>
+
+    <a-scene  background="color: #0097FF" 
+        debug-keyboard="key: e, r; event: enter-0, exit-1; target: #chaton, #chaton">
+   
+        <a-assets>
+            <a-asset-item id="cat" src="models/e.gltf"></a-asset-item>
+            <a-mixin id="survey" animation-mixer="clip: idle" animation="property: position; to: -1 0 -2; dur: 2000; easing: linear; loop: false"></a-mixin>
+            <a-mixin id="run" animation-mixer="clip: Run"  animation="property: position; to: -1 0 6; dur: 2000; easing: linear; loop: true"  ></a-mixin>
+            <a-mixin id="walk" animation-mixer="clip: Walk" animation="property: position; to: -1 0 3; dur: 4000; easing: linear; loop: true" ></a-mixin>
+        </a-assets>
+        <a-entity position="0 1 -2" geometry="primitive: plane; width: auto; height: auto" material="color: #eee"
+        text="color: blue; align: center; value: Attrape le chat !; width: 4; ">
+</a-entity>
+        <a-entity id="cat" position="-1 0 -2" scale="1 1 1" 
+                gltf-model="#cat" mixin="survey" test
+                proximity="trace: true; seuils: 1, 2"
+                event-set__enter-0="event: _event: enter-0; mixin: run;  " 
+                event-set__exit-1="event: _event: exit-1; mixin: walk;   "            
+                event-set__enter-1="event: _event: enter-1; mixin: walk;  " 
+                event-set__exit-2="event: _event: enter-2; mixin: survey;">
+        </a-entity>
+
+        <a-plane position="0 0 -2" rotation="-90 0 0" width="4" height="30" color="#4985FF">
+        </a-plane>
+
+        <a-entity camera position="0 0.5 0" currentposition
+            look-controls wasd-controls="acceleration:10">
+            <a-text id="txtlog" value="appuyez sur les touches 'e' et 'r' \n pour envoyer des event 'enter-0' et 'exit-0'" 
+                align="center" color="white" position="0 0 -1" rotation="0 0 0"
+                scale="0.25 0.25 0.25">
+            </a-text>
+        </a-entity>
+        <a-light type="ambient" color="white"></a-light>
+        <a-light type="point" intensity="1" position="-2 2 2"></a-light>
+    </a-scene>
+
+</body>
+
+</html>
+
