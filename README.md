@@ -1,39 +1,20 @@
-### This component was developed in partnership with [Planet Voodoo® (Voodoo LLC)](https://planetvoodoo.org/) as part of their 'WebXR Wizardry' initiative.
-<a href="https://planetvoodoo.org/"> <img src="../media/planet-voodoo.png" height="200" /></a>
-<hr>
+# DSAA Numérique 🖥️
 
-### material-modifier
 
-Material changes in a specific material node.
+## CHATS  🐱
 
-#### usage
-
+* .[ 🐈 Cat_actions](https://zuomarage.github.io/chats/cat_actions.html) 
+* .[ 🐈 Cats_proximity_realistic](https://zuomarage.github.io/chats/cats_proximity_realistic.html)
+* .[ 🐈 Cats_proximity_pas_réaliste](https://zuomarage.github.io/chats/cats_proximity.html) 
+* .[ 🐈 Cats_proximity_head_occulus](https://zuomarage.github.io/chats/cats_proximity_head.html)
+* .[ 👐 Cats_proximity_hands_occulus](https://zuomarage.github.io/chats/cats_proximity_hands.html)
+* .[ 🏢 Ruins_of_cats](https://zuomarage.github.io/chats/city_of_cats.html)
     The components expects the material name to be in the component id: `material-modifier__<MATERIAL_NAME>`
 
-    <script src="https://gftruj.github.io/webzamples/PlanetVoodoo/material-modifier/material-modifier.js"></script>
-    <a-scene>
-      <a-entity gltf-model="./model.gltf" material-modifier__Left_Siren="emissive: 0xff0000"></a-entity>
-    </a-scene>
- 
-Update with `setAttribute("material_modifier__<MATERIAL_NAME>", "property", value);`
- 
-#### Attributes
-
-| Attribute         | type          |
-| -------------     |:-------------:| 
-| color             | hex           | 
-| emissive          | hex           | 
-| emissiveIntensity | number        | 
-| opacity           | number        | 
-| roughness         | number        | 
-| metalness         | number        | 
-| opacity           | number        | 
+### CLIENTS 🤟🏻
+* .[ 🧪 RIGIDO](https://zuomarage.github.io/chats/rigidojewellery.html) 
 
 
-#### Example
+###  EXPERIMENTAL ⚙️
 
-Check out the interactive [example](https://gftruj.github.io/webzamples/PlanetVoodoo/material-modifier):
-<hr>
-
-![policecar](./../media/policecar.gif "policecar")
-
+* .[ 🕶️ XEMANTIC NEO](https://zuomarage.github.io/chats/xemantic.html) 
