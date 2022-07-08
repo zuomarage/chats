@@ -11,7 +11,7 @@
 * .[ 🏢 Ruins_of_cats](https://zuomarage.github.io/chats/city_of_cats.html)
  
 ### CLIENTS 🤟🏻
-* .[ 🧪 RIGIDO](https://zuomarage.github.io/chats/rigidojewellery.html) 
+* .[ 🧪 PULL & BEAR](https://zuomarage.github.io/chats/rigidojewellery.html) 
 
 
 ###  EXPERIMENTAL ⚙️
