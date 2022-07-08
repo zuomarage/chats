@@ -2,7 +2,7 @@
 
 L'ancien Repository à été vidé pour avoir plus de stockage
 
-## DSAA1 Num 🖥️
+## DSAA Numérique 🖥️
 
 
 * .[ 🐈 Cat_actions](https://zuomarage.github.io/chats/cat_actions.html) 
@@ -14,3 +14,5 @@ L'ancien Repository à été vidé pour avoir plus de stockage
 
 ### CLIENTS 🤟🏻
 * .[ 🔵 Client 1](https://zuomarage.github.io/chats/rigidojewellery.html)
+
+### EXPLORATIONS PERSO 👀
