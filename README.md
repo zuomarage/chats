@@ -12,5 +12,5 @@ L'ancien Repository à été vidé pour avoir plus de stockage
 * .[ 👐 Cats_proximity_hands_occulus](https://zuomarage.github.io/chats/cats_proximity_hands.html)
 * .[ 🏢 Ruins_of_cats](https://zuomarage.github.io/chats/city_of_cats.html)
 
-### CLIENTS 🖥️
-* .[ Client 1](https://zuomarage.github.io/chats/rigidojewellery.html)
+### CLIENTS 🤟🏻
+* .[ 🔵 Client 1](https://zuomarage.github.io/chats/rigidojewellery.html)
