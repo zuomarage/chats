@@ -2,11 +2,11 @@
   <head>
     
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="../../dist/aframe-audio-analyser.umd.js"></script>
+    <script src="aframe-audio-analyser.umd.js"></script>
 
-    <script src="../components/color-on-beat.js"></script>
-    <script src="../components/ring-on-beat.js"></script>
-    <script src="../components/toggle-on-beat.js"></script>
+    <script src="color-on-beat.js"></script>
+    <script src="ring-on-beat.js"></script>
+    <script src="toggle-on-beat.js"></script>
   </head>
   <body>
     <a-scene>
@@ -14,7 +14,7 @@
         <img id="floor" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossorigin="anonymous" />
         <img id="skymap" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous" />
 
-        <audio id="song" src="U.mp3" autoplay loop ></audio>
+        <audio id="song" src="U.mp3" autoplay  ></audio>
       </a-assets>
 
       <a-entity id="analyser" audioanalyser="src:#song;"></a-entity>
