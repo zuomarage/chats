@@ -22,5 +22,5 @@
 > Trucs experimentaux
 
 * .[ 🕶️ XEMANTIC NEO](https://zuomarage.github.io/chats/xemantic.html) 
-* .[ 🎹 AUDIO VISUALISATION](https://zuomarage.github.io/chats/audio.html) 
+* .[ 🎹 (PC ONLY) AUDIO VISUALISATION](https://zuomarage.github.io/chats/audio.html) 
 * .[ 👾 Anaglyph](https://zuomarage.github.io/chats/Analgyph.html) 
