@@ -12,7 +12,7 @@
 * .[ 👐 Cats_proximity_hands_occulus](https://zuomarage.github.io/chats/cats_proximity_hands.html)
 * .[ 🏢 Ruins_of_cats](https://zuomarage.github.io/chats/city_of_cats.html)
  
-#### CLIENTS 🤟🏻
+#### CLIENTS🍳🏻
 > A-Frame pour réalisation de prototypes avec clients
 
 * .[ 🧪 PULL & BEAR](https://zuomarage.github.io/chats/rigidojewellery.html) 
@@ -22,3 +22,4 @@
 > Trucs experimentaux
 
 * .[ 🕶️ XEMANTIC NEO](https://zuomarage.github.io/chats/xemantic.html) 
+* .[ 🎹 AUDIO VISUALISATION](https://zuomarage.github.io/chats/audio.html) 
