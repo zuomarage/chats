@@ -24,6 +24,3 @@
 * .[ 🕶️ XEMANTIC NEO](https://zuomarage.github.io/chats/xemantic.html) 
 * .[ 🎹 (PC ONLY) AUDIO VISUALISATION](https://zuomarage.github.io/chats/audio.html) 
 * .[ 👾 Anaglyph](https://zuomarage.github.io/chats/Anaglyph.html) 
-
-#####  TEST pour PROJET DIPLOME
-* .[TEST FRACTAL ENV](https://github.com/zuomarage/fracta-sound/test.html)
