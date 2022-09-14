@@ -29,3 +29,4 @@
 > a-frame et fractal-Fractaliser le son
 
 * .[ TEST 1](https://zuomarage.github.io/chats/strings.html) 
+* .[ TEST 2](https://zuomarage.github.io/chats/fract-sound.html) 
