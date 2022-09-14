@@ -26,4 +26,4 @@
 * .[ 👾 Anaglyph](https://zuomarage.github.io/chats/Anaglyph.html) 
 
 #####  TEST pour PROJET DIPLOME
-* .[TEST FRACTAL ENV](https://github.com/zuomarage/fracta-sound/blob/main/test.html)
+* .[TEST FRACTAL ENV](https://github.com/zuomarage/fracta-sound/test.html)
