@@ -1,0 +1,72 @@
+<html>
+   <style>.songtitle {
+    position: fixed;
+    top: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+    padding-left: 30px;
+    color: white;
+  }
+  </style>
+  <head>  
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+<script>window.onload = function () {
+    var canvas = document.querySelector( '.a-canvas' );
+  
+    canvas.addEventListener('dragover', function( e ) {
+      e.preventDefault();
+    })
+  
+    canvas.addEventListener('drop', function( e ) {
+  
+      console.log('File(s) dropped');
+  
+      // Prevent default behavior (Prevent file from being opened)
+      e.preventDefault();
+  
+      if ( e.dataTransfer.items ) {
+  
+        if ( e.dataTransfer.items[0].kind === 'file' ) {
+          var file = e.dataTransfer.items[0].getAsFile();
+          var blobURL = window.URL.createObjectURL( file );
+          document.getElementById('audio').setAttribute('src', blobURL);
+          document.querySelector('.songtitle').innerHTML = file.name;
+        }
+  
+      }
+  
+    });
+  
+  }
+  </script>
+    <script src="https://unpkg.com/aframe-fractal-component/dist/aframe-fractal-component.min.js"></script>
+  </head>
+ 
+
+  <a-scene>
+    <a-entity camera="active: true" look-controls wasd-controls="acceleration: 10220" position="0 1.6 0"></a-entity>
+    <a-sound id='audio' position='0 0 0' autoplay='true'></a-sound>
+    <a-entity
+          position='0 0 -400'
+          fractal='x: ( Math.cos(t * 11.1) * 2000 ) + Math.random() * 1200; y: ( Math.sin(t * 11.1) * 2000 ) + Math.random() * 100; z: Math.random()*1200; audioSource: #audio; colors: #4286f4, #cbff00, #b800c9, #00c9a4, #ff002e, #3aff00; scale: .6; fftSize: 512; pointSize: 1 ; points: 624230;'>
+  
+          <a-animation attribute="rotation"
+             dur="100000"
+             easing='linear'
+             from='0 0 0'
+             to="0 360 360"
+             repeat="indefinite">
+          </a-animation>
+  
+          </a-entity>
+    
+  
+    <a-sky color='#000000'></a-sky>
+  
+  </a-scene>
+  
+  <h1 class='songtitle'>Glisse ta musique pour jouer</h1>
+  
+
+  </html>
