@@ -1,0 +1,91 @@
+<html>
+   <style>.songtitle {
+    position: fixed;
+    top: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+    padding-left: 30px;
+    color: white;
+  }
+  </style>
+  <head>  
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.74/Tone.js"></script>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+
+  <script src="piano.js"></script>
+  <script src="pressable.js"></script>
+  <script src="teleport.js"></script> 
+  <script src="hand-tracking.js"></script>
+  <script src="hand-tracking-gestures.js"></script><script>window.onload = function () {
+    var canvas = document.querySelector( '.a-canvas' );
+  
+    canvas.addEventListener('dragover', function( e ) {
+      e.preventDefault();
+    })
+  
+    canvas.addEventListener('drop', function( e ) {
+  
+      console.log('File(s) dropped');
+  
+      // Prevent default behavior (Prevent file from being opened)
+      e.preventDefault();
+  
+      if ( e.dataTransfer.items ) {
+  
+        if ( e.dataTransfer.items[0].kind === 'file' ) {
+          var file = e.dataTransfer.items[0].getAsFile();
+          var blobURL = window.URL.createObjectURL( file );
+          document.getElementById('audio').setAttribute('src', blobURL);
+          document.querySelector('.songtitle').innerHTML = file.name;
+        }
+  
+      }
+  
+    });
+  
+  }
+  </script>
+    <script src="https://unpkg.com/aframe-fractal-component/dist/aframe-fractal-component.min.js"></script>
+  </head>
+ 
+
+  <a-scene   webxr="optionalFeatures: hand-tracking" 
+  raycaster="objects: .collidable"
+  cursor="rayOrigin:mouse; fuse:false">
+  <a-entity id="cameraRig">
+    <a-entity id="head" camera position="0 1 0" wasd-controls="acceleration: 10" look-controls></a-entity>
+
+    <a-entity class="hand" hand-tracking="hand: left" hand-tracking-gestures></a-entity>
+    <a-entity class="hand" hand-tracking="hand: right" hand-tracking-gestures></a-entity>
+
+    <!-- <a-entity laser-controls="hand: left" hand-tracking-mesh="hand: left" hand-tracking-gestures-mesh teleport teleport-controls="startEvents: teleportstart; endEvents: teleportend; cameraRig: #cameraRig; teleportOrigin: #head;" raycaster="objects: .collidable; far: 0.2" line="color: #000000"></a-entity> -->
+    <!-- <a-entity laser-controls="hand: right" hand-tracking-mesh="hand: right" hand-tracking-gestures-mesh teleport teleport-controls="startEvents: teleportstart; endEvents: teleportend; cameraRig: #cameraRig; teleportOrigin: #head;" raycaster="objects: .collidable; far: 0.2" line="color: #000000"></a-entity> -->
+</a-entity>
+    <a-sound id='audio' position='0 0 0' autoplay='true'></a-sound>
+    <a-entity
+          position='0 0 -400'
+          fractal='x: ( Math.cos(t * 11.1) * 2000 ) + Math.random() * 1200; y: ( Math.sin(t * 11.1) * 2000 ) + Math.random() * 100; z: Math.random()*1200; audioSource: #audio; colors: #4286f4, #cbff00, #b800c9, #00c9a4, #ff002e, #3aff00; scale: .6; fftSize: 512; pointSize: 1 ; points: 624230;'>
+  
+          <a-animation attribute="rotation"
+             dur="100000"
+             easing='linear'
+             from='0 0 0'
+             to="0 360 360"
+             repeat="indefinite">
+          </a-animation>
+  
+          </a-entity>
+          <a-entity piano position="0 0 -.25"></a-entity>
+    
+  
+    <a-sky color='#000000'></a-sky>
+  
+  </a-scene>
+  
+  <h1 class='songtitle'>Glisse ta musique pour jouer</h1>
+  
+
+  </html>
