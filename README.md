@@ -30,3 +30,4 @@
 
 * .[ TEST 1](https://zuomarage.github.io/chats/strings.html) 
 * .[ TEST 2](https://zuomarage.github.io/chats/fract-sound.html) 
+* .[ TEST 3](https://zuomarage.github.io/chats/Pianos.html) 
