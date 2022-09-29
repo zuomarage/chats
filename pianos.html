@@ -57,7 +57,8 @@
   cursor="rayOrigin:mouse; fuse:false">
   <a-entity id="cameraRig">
     <a-entity id="head" camera position="0 1 0" wasd-controls="acceleration: 10" look-controls></a-entity>
-
+<a-entity oculus-touch-controls="hand: left"></a-entity>
+<a-entity oculus-touch-controls="hand: right"></a-entity>
     <a-entity class="hand" hand-tracking="hand: left" hand-tracking-gestures></a-entity>
     <a-entity class="hand" hand-tracking="hand: right" hand-tracking-gestures></a-entity>
 
