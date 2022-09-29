@@ -64,10 +64,14 @@
   cursor="rayOrigin:mouse; fuse:false">
   <a-entity id="cameraRig">
     <a-entity id="head" camera position="0 1 0" wasd-controls="acceleration: 10" look-controls></a-entity>
-<a-entity oculus-touch-controls="hand: left"></a-entity>
-<a-entity oculus-touch-controls="hand: right"></a-entity>
-    <a-entity class="hand" hand-tracking="hand: left" hand-tracking-gestures></a-entity>
-    <a-entity class="hand" hand-tracking="hand: right" hand-tracking-gestures></a-entity>
+
+    <a-entity id="gauche" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc">
+            </a-entity>
+        
+            <!-- MAIN DROITE : utiliser oculus-touch-controls pour model3D -->
+            <a-entity id="droite" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" change-height>
+            </a-entity>
+        
 
     <!-- <a-entity laser-controls="hand: left" hand-tracking-mesh="hand: left" hand-tracking-gestures-mesh teleport teleport-controls="startEvents: teleportstart; endEvents: teleportend; cameraRig: #cameraRig; teleportOrigin: #head;" raycaster="objects: .collidable; far: 0.2" line="color: #000000"></a-entity> -->
     <!-- <a-entity laser-controls="hand: right" hand-tracking-mesh="hand: right" hand-tracking-gestures-mesh teleport teleport-controls="startEvents: teleportstart; endEvents: teleportend; cameraRig: #cameraRig; teleportOrigin: #head;" raycaster="objects: .collidable; far: 0.2" line="color: #000000"></a-entity> -->
