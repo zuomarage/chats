@@ -10,6 +10,7 @@
   </style>
   <head>  
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src=" https://github.com/zuomarage/chats/blob/main/cats_proximity_hands.html"</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.74/Tone.js"></script>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
@@ -57,8 +58,11 @@
   cursor="rayOrigin:mouse; fuse:false">
   <a-entity id="cameraRig">
     <a-entity id="head" camera position="0 1 0" wasd-controls="acceleration: 10" look-controls></a-entity>
-<a-entity oculus-touch-controls="hand: left"></a-entity>
-<a-entity oculus-touch-controls="hand: right"></a-entity>
+  <a-entity id="gauche" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc">
+            </a-entity>
+        
+            <!-- MAIN DROITE : utiliser oculus-touch-controls pour model3D -->
+            <a-entity id="droite" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" change-height>
     <a-entity class="hand" hand-tracking="hand: left" hand-tracking-gestures></a-entity>
     <a-entity class="hand" hand-tracking="hand: right" hand-tracking-gestures></a-entity>
 
