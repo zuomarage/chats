@@ -8,7 +8,7 @@ var X2
 var Y2
 let angle=0
 function setup(){
-	createCanvas(1000, 400, WEBGL);
+	createCanvas(1920,1080, WEBGL);
 	
 	note = new p5.Oscillator();
 	X = 50
