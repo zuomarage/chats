@@ -30,4 +30,4 @@
 * .[MOVATUNE](https://zuomarage.github.io/chats/movatunev1.ino) 
 
 #####  MEMOIRE
-* .[DESIGN WEEK](https://zuomarage.github.io/chats/julie/VOXATUNE.html) 
+* .[DESIGN WEEK](https://zuomarage.github.io/chats/Julie/VOXATUNE.html) 
